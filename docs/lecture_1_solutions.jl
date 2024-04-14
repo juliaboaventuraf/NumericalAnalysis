@@ -54,7 +54,6 @@ valor_round_x = 1.946
 #Erros absoluto e relativo quanto ao valor aproximado via truncamento
 erro_abs_trunc = absolute_error(x, trunc_x)
 valor_erro_abs_trunc = 0.07445986071397837
-
 erro_rel_trunc = relative_error(x, trunc_x)
 valor_erro_rel_trunc = 0.0381153472184052
 
