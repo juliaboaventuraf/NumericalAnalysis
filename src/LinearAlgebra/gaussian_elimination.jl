@@ -1,5 +1,5 @@
 """
-INPUT: Número de equações ou variáveis (n), a matriz A e o vetor coluna b, A' = [A, B].
+INPUT: Número de equações ou variáveis (n), a matriz A e o vetor coluna b, A_ext = [A, B].
 
 OUTPUT: Solução x_1, x_2, ..., x_n =: x do sistema Ax = b
 """
@@ -9,14 +9,14 @@ function solve_system(A::Matrix{Float64}, b::Vector{Float64})
 
     dimension_failure(A, n) && return
 
-    A' = [copy[A] copy[b]]
+    A_ext = [copy[A] copy[b]]
 
     for i = 1:n-1
 
         p = i
 
         for k = i:n
-            if A'[k,i] != 0
+            if A_ext[k,i] != 0
                 p = k
                 break
             end
@@ -31,28 +31,28 @@ function solve_system(A::Matrix{Float64}, b::Vector{Float64})
             return
         end
 
-        a_pi = A'[p,i]
+        a_pi = A_ext[p,i]
 
         if p != i
-            v = copy(A'[p, :])
-            A'[p, :] = A'[i, :]
-            A'[i, :] = v
+            v = copy(A_ext[p, :])
+            A_ext[p, :] = A_ext[i, :]
+            A_ext[i, :] = v
         end
 
         for j = i + 1:n
-            m = A'[j, i] / A'[i, i]
+            m = A_ext[j, i] / A_ext[i, i]
 
-            A'[j, :] = A'[j, :] - m*A'[i, :]
+            A_ext[j, :] = A_ext[j, :] - m*A_ext[i, :]
         end
     end
 
-    if A'[n, n] == 0
+    if A_ext[n, n] == 0
         println("O sistema não admite uma única solução")
         return        
     end
 
     x = Vector{Float64}(undef, n)
-    x[n] = A'[n, n + 1] / A'[n, n]
+    x[n] = A_ext[n, n + 1] / A_ext[n, n]
 
 end
 
