@@ -11,6 +11,6 @@ function fixed_point(f, p0, τ::Float64 = 1e-15, N::Int64 = 10000)
 
         pi = p
     end
-    
+
     return "O método falhou após " * string(N) * " interações"
 end

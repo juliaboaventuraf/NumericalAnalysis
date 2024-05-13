@@ -20,7 +20,7 @@ function solve_system(A::Matrix{Float64}, b::Vector{Float64})
         msg_erro = false
 
         for k = i:n
-            if round(A_ext[k,i], digits = n_digits) != 0
+            if round(A_ext[k, i], digits = n_digits) != 0
                 p = k
                 break
             end
@@ -35,7 +35,7 @@ function solve_system(A::Matrix{Float64}, b::Vector{Float64})
             return
         end
 
-        a_pi = A_ext[p,i]
+        a_pi = A_ext[p, i]
 
         if p != i
             v = copy(A_ext[p, :])
@@ -43,27 +43,27 @@ function solve_system(A::Matrix{Float64}, b::Vector{Float64})
             A_ext[i, :] = v
         end
 
-        for j = i + 1:n
+        for j = i+1:n
             m = A_ext[j, i] / A_ext[i, i]
 
-            A_ext[j, :] = A_ext[j, :] - m*A_ext[i, :]
+            A_ext[j, :] = A_ext[j, :] - m * A_ext[i, :]
         end
     end
 
     if round(A_ext[n, n], digits = n_digits) == 0
         println("O sistema não admite uma única solução")
-        return        
+        return
     end
 
     x = Vector{Float64}(undef, n)
-    x[n] = A_ext[n, n + 1] / A_ext[n, n]
+    x[n] = A_ext[n, n+1] / A_ext[n, n]
 
-    for i = n - 1:-1:1
+    for i = n-1:-1:1
         sum = 0
-        for j = i + 1:n
+        for j = i+1:n
             sum += A_ext[i, j] * x[j]
         end
-        x[i] = (A_ext[i, n + 1] - sum) / A_ext[i, i]
+        x[i] = (A_ext[i, n+1] - sum) / A_ext[i, i]
     end
 
     return x
@@ -80,6 +80,6 @@ function dimension_failure(A::Matrix{Float64}, number_of_variables::Int64)
         println("A matriz A precisa ser quadrada!")
         return true
     end
-    
+
     return false
 end

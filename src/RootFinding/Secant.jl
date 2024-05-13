@@ -11,7 +11,11 @@ function secant(f, p0, p1, τ::Float64 = 1e-15, N::Int64 = 10000)
 
     for i = 1:N
         if abs(fqi - fpi) < 1e-15
-            return "Erro, pois a imagem de p na " * string(i) * "-ésima iteração está muito próxima da imagem de p na " * string(i-1) * "-ésima iteração"
+            return "Erro, pois a imagem de p na " *
+                   string(i) *
+                   "-ésima iteração está muito próxima da imagem de p na " *
+                   string(i - 1) *
+                   "-ésima iteração"
         end
 
         p = pi - (fpi * (pi - qi)) / (fpi - fqi)
@@ -25,7 +29,7 @@ function secant(f, p0, p1, τ::Float64 = 1e-15, N::Int64 = 10000)
         fpi = f(pi)
         fqi = f(qi)
     end
-    
+
     return "O método falhou após " * string(N) * " interações"
 end
 
