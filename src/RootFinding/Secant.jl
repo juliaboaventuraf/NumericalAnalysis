@@ -32,21 +32,3 @@ function secant(f, p0, p1, τ::Float64 = 1e-15, N::Int64 = 10000)
 
     return "O método falhou após " * string(N) * " interações"
 end
-
-"""
-INPUT: f, p0, p1, τ (tolerância) e N (número máximo de iterações);
-OUTPUT: Aproximação para p ou mensagem de erro;
-STEP 1: if f(p0) = f(p1) then
-    OUTPUT(“f(p0) e f(p1) estão próximos.”);
-    STOP;
-STEP 2: p := p1, pi := p1, qi := p0, fpi := f(pi), fqi := f(qi);
-STEP 3: for i = 1, · · · , N (do STEPS 4-7):
-    STEP 4: if fqi = fpi then
-        OUTPUT(“Erro, pois f(pi) muito próximo de f(pi)”);
-        STOP;
-    STEP 5: p := pi - fpi(pi - qi)fpi - fqi ;
-    STEP 6: if |pi - qi| < τ then
-        OUTPUT(p);
-        STOP;
-    STEP 7: qi := pi, pi := p; fpi := f(pi), fqi := f(qi)
-"""

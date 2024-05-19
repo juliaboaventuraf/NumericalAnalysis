@@ -1,8 +1,3 @@
-"""
-INPUT: Número de equações ou variáveis (n), a matriz A e o vetor coluna b, A_ext = [A, B].
-
-OUTPUT: Solução x_1, x_2, ..., x_n =: x do sistema Ax = b
-"""
 function solve_system(A::Matrix{Float64}, b::Vector{Float64})
 
     n_digits = 8
